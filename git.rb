@@ -15,6 +15,6 @@ def git_extract(url)
   url.split('/')[-1]
 end
 
-def run_tests
-  %x(python number_converter_test.py 2>&1)
+def run_tests(command)
+  %x(#{command} 2>&1)
 end

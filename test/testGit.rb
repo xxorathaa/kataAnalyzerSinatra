@@ -27,9 +27,9 @@ class GitTest < Test::Unit::TestCase
     url = 'https://github.com/michaelrauh/RomanNumeralConverter'
     git_clone(url)
     git_cd(git_extract(url))
-    test_response = run_tests()
+    test_response = run_tests("python number_converter_test.py")
     expected_response = ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.001s\n\nOK\n"
     assert_equal expected_response, test_response
   end
-  
+
 end

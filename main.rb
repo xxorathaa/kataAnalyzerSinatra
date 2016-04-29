@@ -10,14 +10,16 @@ post '/confirm/' do
   name = params[:name] || "Hi There"
   kataURL = params[:kataURL] || "Nobody"
   from = params[:from] || "Nowhere"
+  test_command = params[:testCommand] || "None"
 
   project_name = git_extract(kataURL)
   git_clone(kataURL)
   git_cd(project_name)
   commit_number = git_count_commits
+  test_results = run_tests(test_command)
   git_cd('../')
 
-  mailto(name, kataURL, from, commit_number)
+  mailto(name, kataURL, from, commit_number, test_results)
 
   erb :confirmation, :locals => {'name' => name, 'kataURL' => kataURL, 'from' => from}
 end
