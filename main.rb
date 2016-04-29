@@ -11,6 +11,7 @@ post '/confirm/' do
   kataURL = params[:kataURL] || "Nobody"
   from = params[:from] || "Nowhere"
   test_command = params[:testCommand] || "None"
+  to = params[:to] || "mrauh+default@pillartechnology.com"
 
   project_name = git_extract(kataURL)
   git_clone(kataURL)
@@ -20,7 +21,7 @@ post '/confirm/' do
   git_cd('../')
   simian_results = run_simian("#{project_name}/*")
 
-  mailto(name, kataURL, from, commit_number, test_results, simian_results)
+  mailto(to, name, kataURL, from, commit_number, test_results, simian_results)
 
   erb :confirmation, :locals => {'name' => name, 'kataURL' => kataURL, 'from' => from}
 end
