@@ -94,4 +94,10 @@ class GitTest < Test::Unit::TestCase
     assert_equal 2, total
   end
 
+  def test_that_mocha_and_jasmine_are_supported
+    git_cd('testData/javascript')
+    total = count_all('.js')
+    git_cd('../../')
+    assert_equal 5, total
+  end
 end
