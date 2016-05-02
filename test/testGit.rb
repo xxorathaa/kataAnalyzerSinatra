@@ -66,4 +66,11 @@ class GitTest < Test::Unit::TestCase
     assert_equal 3, total
   end
 
+  def test_that_java_can_be_counted
+    git_cd('testData/java')
+    total = count_all('.java')
+    git_cd('../../')
+    assert_equal 2, total
+  end
+
 end
