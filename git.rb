@@ -1,3 +1,5 @@
+require './counter.rb'
+
 def git_clone (url)
   %x(git clone #{url})
 end
@@ -25,7 +27,7 @@ end
 
 def count_all(extension)
   total = 0
-  Dir.glob("**/*.rb").each do |filename|
+  Dir.glob("**/*#{extension}").each do |filename|
     current_file = File.read(filename)
     total += count(current_file)
   end

@@ -18,10 +18,11 @@ post '/confirm/' do
   git_cd(project_name)
   commit_number = git_count_commits
   test_results = run_tests(test_command)
+  number_of_tests = count_all('.py')
   git_cd('../')
   simian_results = run_simian("#{project_name}/*")
 
   mailto(to, name, kataURL, from, commit_number, test_results, simian_results)
 
-  erb :confirmation, :locals => {'name' => name, 'kataURL' => kataURL, 'from' => from}
+  erb :confirmation, :locals => {'name' => name, 'kataURL' => kataURL, 'from' => from, 'count' => number_of_tests}
 end
