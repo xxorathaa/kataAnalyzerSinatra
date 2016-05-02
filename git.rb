@@ -22,3 +22,12 @@ end
 def run_simian(files)
   %x(java -jar simian-2.4.0.jar -threshold=2 #{files} 2>&1)
 end
+
+def count_all(base, extension)
+  total = 0
+  Dir.glob("#{base}/**/*.rb").each do |filename|
+    current_file = File.read(filename)
+    total += count(current_file)
+  end
+  return total
+end
