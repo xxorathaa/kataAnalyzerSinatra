@@ -1,6 +1,5 @@
 require '../git.rb'
 require 'test/unit'
-require '../counter.rb'
 
 class GitTest < Test::Unit::TestCase
 
@@ -25,33 +24,24 @@ class GitTest < Test::Unit::TestCase
     %x`rm -rf RomanNumeralConverter`
   end
 
-  def test_that_unit_test_command_returns_correct_text
-    url = 'https://github.com/michaelrauh/RomanNumeralConverter'
-    git_clone(url)
-    git_cd(git_extract(url))
-    test_response = run_tests("python number_converter_test.py")
-    git_cd("../")
-    expected_response = ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.001s\n\nOK\n"
-    assert_equal expected_response, test_response
-  end
-
   def test_that_ruby_test_counter_can_count_tests_in_a_single_ruby_file
-    single_test = File.read("../testData/ruby/singleCase.rb")
+    single_test = File.read("testData/ruby/singleCase.rb")
     assert_equal count(single_test), 1
   end
 
   def test_that_we_can_fetch_and_count_multiple_files
     total = 0
-    Dir.glob('../testData/ruby/*.rb').each do |filename|
+    Dir.glob('testData/ruby/*.rb').each do |filename|
       current_file = File.read(filename)
       total += count(current_file)
     end
-    assert_equal total, 3
+    assert_equal 3, total
   end
 
   def test_that_count_all_can_count_all_ruby_files
-    git_cd("../testData")
+    git_cd("../testData/ruby")
     total = count_all('.rb')
+    git_cd("../../")
     assert_equal 3, total
   end
 
