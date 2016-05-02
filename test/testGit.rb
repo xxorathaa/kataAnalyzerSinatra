@@ -52,4 +52,11 @@ class GitTest < Test::Unit::TestCase
     assert_equal 2, total
   end
 
+  def test_that_doctest_can_be_counted
+    git_cd('testData/doctest')
+    total = count_all('.py')
+    git_cd("../../")
+    assert_equal 9, total
+  end
+
 end

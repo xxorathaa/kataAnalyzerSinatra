@@ -26,12 +26,21 @@ def run_simian(files)
 end
 
 def count(file_contents)
-  file_contents.scan(/def test_/).count || file_contents.scan(/>>>/).count
+  possible_patterns = [/>>>/, /def test_/]
+  max = 0
+  possible_patterns.each do | pattern|
+    current = file_contents.scan(pattern).count
+    if current > max
+      max = current
+    end
+  end
+  return max
 end
 
 def count_all(extension)
   total = 0
   Dir.glob("**/*#{extension}").each do |filename|
+    p "filename: #{filename}"
     current_file = File.read(filename)
     total += count(current_file)
   end
