@@ -18,12 +18,11 @@ post '/confirm/' do
   git_clone(kataURL)
   git_cd(project_name)
   commit_number = git_count_commits
-  test_results = run_tests(test_command)
   number_of_tests = count_all(extension)
   git_cd('../')
   simian_results = run_simian("#{project_name}/*")
 
-  mailto(to, name, kataURL, from, commit_number, test_results, simian_results, number_of_tests)
+  mailto(to, name, kataURL, from, commit_number, simian_results, number_of_tests, test_command)
 
   erb :confirmation, :locals => {'name' => name, 'kataURL' => kataURL, 'from' => from}
 end
