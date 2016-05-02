@@ -73,4 +73,11 @@ class GitTest < Test::Unit::TestCase
     assert_equal 2, total
   end
 
+  def test_that_NUnit_can_be_counted
+    git_cd('../testData/NUnit')
+    total = count_all('.cs')
+    git_cd('../')
+    assert_equal 21, total
+  end
+
 end
