@@ -59,4 +59,11 @@ class GitTest < Test::Unit::TestCase
     assert_equal 9, total
   end
 
+  def test_that_rspec_can_be_counted
+    git_cd('testData/rspec')
+    total = count_all('.rb')
+    git_cd('../../')
+    assert_equal 3, total
+  end
+
 end
