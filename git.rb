@@ -1,7 +1,10 @@
 require 'git'
 
 def git_clone (url)
-  Git.clone(url, git_extract(url))
+  project_name = git_extract(url)
+  unless Dir.glob('*').include?(project_name)
+    Git.clone(url, project_name)
+  end
 end
 
 def git_count_commits
