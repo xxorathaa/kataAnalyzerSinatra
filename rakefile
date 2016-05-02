@@ -1,11 +1,13 @@
 require 'rake/testtask'
 task :default => [:run]
 Rake::TestTask.new do |t|
+    Dir.chdir('test')
     t.libs << "test"
-    t.test_files = FileList['test/test*.rb']
+    t.test_files = FileList['test*.rb']
     t.verbose = true
   end
 
 task :run do
+  Dir.chdir('../')
   ruby "main.rb"
 end
