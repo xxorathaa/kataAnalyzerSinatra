@@ -50,7 +50,8 @@ class GitTest < Test::Unit::TestCase
   end
 
   def test_that_count_all_can_count_all_ruby_files
-    total = count_all('../testData/', '.rb')
+    git_cd("../testData")
+    total = count_all('.rb')
     assert_equal 3, total
   end
 
