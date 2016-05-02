@@ -45,4 +45,11 @@ class GitTest < Test::Unit::TestCase
     assert_equal 3, total
   end
 
+  def test_that_python_files_can_be_counted
+    git_cd("testData/python")
+    total = count_all('.py')
+    git_cd("../../")
+    assert_equal 2, total
+  end
+
 end
