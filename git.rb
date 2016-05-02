@@ -1,7 +1,7 @@
-
+require 'git'
 
 def git_clone (url)
-  %x(git clone #{url})
+  Git.clone(url, git_extract(url))
 end
 
 def git_cd(directory)
