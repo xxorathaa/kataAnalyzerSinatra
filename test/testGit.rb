@@ -87,4 +87,11 @@ class GitTest < Test::Unit::TestCase
     assert_equal 2, total
   end
 
+  def test_that_objective_c_unit_tests_can_be_counted
+    git_cd('testData/objectiveC')
+    total = count_all('.m')
+    git_cd('../../')
+    assert_equal 2, total
+  end
+
 end
