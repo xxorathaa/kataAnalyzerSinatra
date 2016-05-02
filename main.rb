@@ -1,6 +1,8 @@
 require 'sinatra'
 require './mail.rb'
 require './git.rb'
+require './counter.rb'
+require './simian.rb'
 
 get '/' do
   erb :index
@@ -16,10 +18,10 @@ post '/confirm/' do
 
   project_name = git_extract(kataURL)
   git_clone(kataURL)
-  git_cd(project_name)
+  Dir.chdir(project_name)
   commit_number = git_count_commits
   number_of_tests = count_all(extension)
-  git_cd('../')
+  Dir.chdir('../')
   simian_results = run_simian("#{project_name}/*")
 
   mailto(to, name, kataURL, from, commit_number, simian_results, number_of_tests, test_command)
