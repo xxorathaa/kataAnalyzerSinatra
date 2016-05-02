@@ -1,5 +1,6 @@
-require './git.rb'
+require '../git.rb'
 require 'test/unit'
+require '../counter.rb'
 
 class GitTest < Test::Unit::TestCase
 
@@ -34,11 +35,18 @@ class GitTest < Test::Unit::TestCase
     assert_equal expected_response, test_response
   end
 
-  def test_that_simian_returns_valid_response
-    url = 'https://github.com/michaelrauh/RomanNumeralConverter'
-    git_clone(url)
-    actual = run_simian("#{git_extract(url)}/*")
-
-    assert actual.include?("Processing time")
+  def test_that_ruby_test_counter_can_count_tests_in_a_single_ruby_file
+    single_test = File.read("../testData/ruby/singleCase.rb")
+    assert_equal count(single_test), 1
   end
+
+  def test_that_we_can_fetch_and_count_multiple_files
+    total = 0
+    Dir.glob('../testData/ruby/*.rb').each do |filename|
+      current_file = File.read(filename)
+      total += count(current_file)
+    end
+    assert_equal total, 3
+  end
+
 end
