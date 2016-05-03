@@ -86,4 +86,11 @@ class TestCounterTest < Test::Unit::TestCase
     Dir.chdir('../../')
     assert_equal 4, total
   end
+
+  def test_that_cplusplus_is_supported
+    Dir.chdir('testData/cpp')
+    total = count_all('.cpp') + count_all('.cc') + count_all('.c++')
+    Dir.chdir('../../')
+    assert_equal 6, total
+  end
 end
