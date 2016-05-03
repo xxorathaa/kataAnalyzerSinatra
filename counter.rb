@@ -1,5 +1,5 @@
 def count(file_contents)
-  possible_patterns = [/>>>/, /def test_/, /it "/, /@Test/, /\[Test\]/, /\[TestMethod\]/, /\(void\)test/, /it\(['"]/]
+  possible_patterns = [/>>>/, /def test_/, /it "/, /@Test/, /\[Test\]/, /\[TestMethod\]/, /\(void\)test/, /it\(['"]/, /func test/]
   max = 0
   possible_patterns.each do |pattern|
     current = file_contents.scan(pattern).count

@@ -79,4 +79,11 @@ class TestCounterTest < Test::Unit::TestCase
     Dir.chdir('../../')
     assert_equal 5, total
   end
+
+  def test_that_swift_is_supported
+    Dir.chdir('testData/swift')
+    total = count_all('.swift')
+    Dir.chdir('../../')
+    assert_equal 4, total
+  end
 end
