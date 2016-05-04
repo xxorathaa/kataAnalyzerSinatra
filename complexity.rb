@@ -2,7 +2,8 @@ def count(file_contents)
   complexity = 1
   patterns = [/\Wif\W/, /\Wunless\W/, /\Wwhile\W/, /\Wuntil\W/, /\Wfor\W/,
     /\Welsif\W/, /\Wwhen\W/, /\Wrescue\W/, /\&\&/, /\Wand\W/, /\|\|/, /\Wor\W/,
-     /\&\=/, /\|\=/, /\^\=/, /\Wor_eq\W/, /\Wand_eq\W/, /\Wxor_eq\W/, /\Wcase\W/, /\Wcatch\W/, /\Wxor\W/]
+     /\&\=/, /\|\=/, /\^\=/, /\Wor_eq\W/, /\Wand_eq\W/, /\Wxor_eq\W/,
+     /\Wcase\W/, /\Wcatch\W/, /\Wxor\W/, /\Wforeach\W/]
     patterns.each do |pattern|
     complexity += file_contents.scan(pattern).count
   end
