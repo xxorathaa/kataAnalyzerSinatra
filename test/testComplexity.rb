@@ -19,8 +19,15 @@ end
 
 def test_that_csharp_complexity_can_be_counted
   Dir.chdir('../testData/csharp/production')
-  total = count_all('cs')
+  total = count_all('.cs')
   assert_equal 6, total
+  Dir.chdir('../../')
+end
+
+def test_that_java_complexity_can_be_counted
+  Dir.chdir('../testData/java/production')
+  total = count_all('.java')
+  assert_equal 15, total
   Dir.chdir('../../')
 end
 
