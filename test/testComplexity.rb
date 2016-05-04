@@ -38,4 +38,11 @@ def test_that_javascript_complexity_can_be_counted
   assert_equal 9, total
 end
 
+def test_that_objective_c_complexity_can_be_counted
+  Dir.chdir('../testData/objectiveC/production')
+  total = count_all('.m')
+  Dir.chdir('../../')
+  assert_equal 8, total
+end
+
 end
