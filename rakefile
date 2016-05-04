@@ -4,6 +4,7 @@ task :test do
   Dir.chdir ('test')
   ruby 'testCountTests.rb'
   ruby 'testGit.rb'
+  ruby 'testComplexity.rb'
 end
 
 task :run do
