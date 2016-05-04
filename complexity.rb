@@ -1,6 +1,10 @@
 def count(file_contents)
-    complexity = file_contents.scan(/if/).count
-    return complexity + 1
+  complexity = 1
+  patterns = [/\Wif\W/, /\Wunless\W/, /\Wwhile\W/, /\Wuntil\W/, /\Wfor\W/, /\Welsif\W/, /\Wwhen\W/, /\Wrescue\W/, /\&\&/, /\Wand\W/, /\|\|/, /\Wor\W/]
+    patterns.each do |pattern|
+    complexity += file_contents.scan(pattern).count
+  end
+    return complexity
 end
 
 def count_all(extension)
