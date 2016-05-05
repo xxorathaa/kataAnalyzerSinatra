@@ -52,4 +52,11 @@ def test_that_python_complexity_can_be_counted
   assert_equal 8, total
 end
 
+def test_that_swift_complexity_can_be_counted
+  Dir.chdir('../testData/swift/production')
+  total = count_all('.swift')
+  Dir.chdir('../../')
+  assert_equal 27, total
+end
+
 end
