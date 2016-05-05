@@ -3,6 +3,7 @@ require './mail.rb'
 require './git.rb'
 require './counter.rb'
 require './simian.rb'
+require './complexity.rb'
 
 get '/' do
   erb :index
@@ -19,12 +20,13 @@ post '/confirm/' do
   project_name = git_extract(kataURL)
   git_clone(kataURL)
   Dir.chdir(project_name)
+  complexity = count_complexity(extension)
   commit_number = git_count_commits
   number_of_tests = count_all(extension)
   Dir.chdir('../')
   simian_results = run_simian("#{project_name}/*")
 
-  mailto(to, name, kataURL, from, commit_number, simian_results, number_of_tests, test_command)
+  mailto(to, name, kataURL, from, commit_number, simian_results, number_of_tests, test_command, complexity)
 
   erb :confirmation, :locals => {'name' => name, 'kataURL' => kataURL, 'from' => from}
 end
