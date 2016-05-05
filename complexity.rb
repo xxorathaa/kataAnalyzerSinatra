@@ -11,7 +11,7 @@ def count(file_contents)
     return complexity
 end
 
-def count_all(extension)
+def count_complexity(extension)
   total = 0
   Dir.glob("**/*#{extension}").each do |filename|
     current_file = File.read(filename)
