@@ -20,7 +20,7 @@ post '/confirm/' do
   project_name = git_extract(kataURL)
   git_clone(kataURL)
   Dir.chdir(project_name)
-  complexity = count_complexity(extension)
+  complexity = count_all_complexity(extension)
   commit_number = git_count_commits
   number_of_tests = count_all(extension)
   Dir.chdir('../')

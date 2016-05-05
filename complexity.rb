@@ -1,4 +1,4 @@
-def count(file_contents)
+def count_complexity(file_contents)
   complexity = 1
   patterns = [/\Wif\W/, /\Wunless\W/, /\Wwhile\W/, /\Wuntil\W/, /\Wfor\W/,
     /\Welsif\W/, /\Wwhen\W/, /\Wrescue\W/, /\&\&/, /\Wand\W/, /\|\|/, /\Wor\W/,
@@ -11,11 +11,11 @@ def count(file_contents)
     return complexity
 end
 
-def count_complexity(extension)
+def count_all_complexity(extension)
   total = 0
   Dir.glob("**/*#{extension}").each do |filename|
     current_file = File.read(filename)
-    total += count(current_file)
+    total += count_complexity(current_file)
   end
   return total
 end
