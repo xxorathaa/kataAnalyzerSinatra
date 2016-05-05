@@ -45,4 +45,11 @@ def test_that_objective_c_complexity_can_be_counted
   assert_equal 8, total
 end
 
+def test_that_python_complexity_can_be_counted
+  Dir.chdir('../testData/python/production')
+  total = count_all('.py')
+  Dir.chdir('../../')
+  assert_equal 8, total
+end
+
 end
